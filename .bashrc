@@ -1,23 +1,30 @@
 
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+source ~/.bashrc2
+export LC_BASHRC=$LC_BASHRC
+
+
+xmodmap -e "keycode 66 = Shift_L"
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+
 #### /keyboard
 
-setxkbmap -option caps:escape
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+#setxkbmap -option caps:escape
 #xmodmap -e 'keycode 66 = Mode_switch'
 #xmodmap -e 'kkeysym h = h H Left'
 #xmodmap -e 'kkeysym l = l L Right'
 #xmodmap -e 'kkeysym k = k K Up'
 #xmodmap -e 'kkeysym j = j J Down'
 
-xmodmap ~/.xmodmap
-xcape -e 'Mode_switch=Escape'
+#xmodmap ~/.xmodmap
+#xcape -e 'Mode_switch=Escape'
 
 # disable capslock without disabling capslock key
 #setxkbmap -option 'caps:none'
@@ -58,13 +65,13 @@ export EOSHOME=root://eosuser.cern.ch//eos/user/v/vavolkl/
 export EOS_MGM_URL=root://eosuser.cern.ch
 
 #### spack setup
-export SPACK_SKIP_MODULES=yes
-source ~/r/spack/share/spack/setup-env.sh
+#export SPACK_SKIP_MODULES=yes
+#source ~/r/spack/share/spack/setup-env.sh
 
 
 ### shorthands
 
-alias g="grep -I -R --exclude-dir=build* --exclude-dir=install --exclude-dir=.git"
+alias g="grep -I -R --exclude-dir=build* --exclude-dir=install --exclude-dir=.git --exclude-dir=vendor --exclude-dir=externals*"
 
 export gh="https://github.com"
 alias lxp='ssh -o StrictHostKeyChecking=no -o GSSAPIAuthentication=yes -o GSSAPITrustDNS=yes -o GSSAPIDelegateCredentials=yes vavolkl@lxplus.cern.ch'
@@ -147,3 +154,5 @@ complete -F _ct ct
 #PERL_MM_OPT="INSTALL_BASE=/home/vavolkl/perl5"; export PERL_MM_OPT;
 
 add_to_path PATH $HOME/.local/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=:/usr/local/go/bin:$PATH
